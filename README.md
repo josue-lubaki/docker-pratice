@@ -82,6 +82,19 @@
   
 * Pour afficher les réseaux Docker existants
   - $ docker network ls <br>
-  ** Affiche les réseaux Dockers qui existent, par défaut, ils sont au nombre de 3 : Bridge (ou Docker0), Host et None
-  ** Le Réseau "Host" correspond au réseau qui attache les conteneurs directement à l'hôte (SANS NAT) ce ui est franchement délétère au niveau de la sécurité, mais augmente les performances. Donc l'addresse IP du container correspondra à l'addresse IP de ma carte réseau
-  ** Le Réseau "None" correspond au réseau qui enlève l'interface eth0 du conteneur et ne laisse que l'interface loclahost d'existante.
+  ** Affiche les réseaux Dockers qui existent, par défaut, ils sont au nombre de 3 : Bridge (ou Docker0), Host et None <br>
+  ** Le Réseau "Host" correspond au réseau qui attache les conteneurs directement à l'hôte (SANS NAT) ce ui est franchement délétère au niveau de la sécurité, mais augmente les performances. Donc l'addresse IP du container correspondra à l'addresse IP de ma carte réseau. <br>
+  ** Le Réseau "None" correspond au réseau qui enlève l'interface eth0 du conteneur et ne laisse que l'interface loclahost d'existante.<br>
+
+* Création des nouveaux Réseaux
+  - $ docker network create [network_name] <br>
+  ** Permet de créer un nouveau réseau auquel pourront s'attacher les containers.<br>
+  ** Le Driver par défaut auquel sera attché le nouveau réseau est le bridge qui permet simplement de pouvoir attacher un sous-réseau au nouveau réseau créé. <br> 
+
+* Création d'un container en spécifiant le réseau
+  - $ docker container run --name [container_name] --network [network_name] --detach [container_tool] <br>
+  ** L'option "--network" permet d'attcaher le conteneur à un réseau spécifique.
+
+* Pour connecter un container existant à un nouveau réseau créé
+  - $ docker network connect [network_name] [conatiner_name] <br>
+  ** Permet d'attacher un container à un nouveau réseau (mais n'enlève pas l'attchement au réseau précédent)
