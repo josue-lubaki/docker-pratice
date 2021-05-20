@@ -72,3 +72,16 @@
   - $ docker container exec -it [container_name] bash <br>
   ** Attention, par exemple sur l'image alpine, bash n'est pas disponible, et il faut plutôt utiliser "sh"
   
+* Lister les associations entre les ports des conteneurs et les ports de la machine physique
+  - $ docker container port [container_name/container_id]
+
+* Formater l'affichage des informations du docker inspect
+  - $ docker container inspect --format '{{.NetworkSettings.IPAddress}}' [container_name]
+  - $ docker container inspect --format "'{{.NetworkSettings.IPAddress}}' && '{{.NetworkSettings.MacAddress}}'" [container_name]<br>
+  ** Permet de n'afficher que la ligne correspondante à l'adresse aux propriétés du conteneurs parmi toutes les infomations de la commande inspect
+  
+* Pour afficher les réseaux Docker existants
+  - $ docker network ls <br>
+  ** Affiche les réseaux Dockers qui existent, par défaut, ils sont au nombre de 3 : Bridge (ou Docker0), Host et None
+  ** Le Réseau "Host" correspond au réseau qui attache les conteneurs directement à l'hôte (SANS NAT) ce ui est franchement délétère au niveau de la sécurité, mais augmente les performances. Donc l'addresse IP du container correspondra à l'addresse IP de ma carte réseau
+  ** Le Réseau "None" correspond au réseau qui enlève l'interface eth0 du conteneur et ne laisse que l'interface loclahost d'existante.
