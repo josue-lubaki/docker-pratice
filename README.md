@@ -97,4 +97,32 @@
 
 * Pour connecter un container existant à un nouveau réseau créé
   - $ docker network connect [network_name] [conatiner_name] <br>
-  ** Permet d'attacher un container à un nouveau réseau (mais n'enlève pas l'attchement au réseau précédent)
+  ** Permet d'attacher un container à un nouveau réseau (mais n'enlève pas l'attchement au réseau précédent) <br>
+  
+* Analyser le cache d'une image docker
+  - $ docker image history [container_name] <br>
+  ** Montre les differentes couches de modifications qui ont été appliquées à l'image docker.<br>
+  Toutes les images démarrent au tout début avec une couche vide appelée "scratch", et tous les changements qui arrivent ensuite sur le système de fichiers de cette image est une autre couche.<br>
+  Tous les changements n'influent pas sur la taille de l'image, comme pour les métadonnées (comme les commandes).
+  
+* Obtenir les informations sur l'image
+  - $ docker image inspect [image_tool]
+  
+* Taguer les images et les pousser dans docker hub
+  - $ docker image tag [image_tool]:[tag] [Pseudo]/[image_target]:[tag]
+  - $ docker image tag mysql:latest akkyn/mysql_test:latest
+
+* Pour pousser l'image sur docker hub
+  - $ docker image push [Pseudo]/[image_name]
+  - $ docker image push akkyn/mysql_test <br>
+  ** Upload les modifications des couches de l'image vers Docker Hub par défaut (on peut changer le dépôt destination)
+  
+* Qu'est-ce que Dockerfile ?
+  - Les dockerfiles sont des fichiers textes décrivant les différentes étapes de création d'un conteneur totalement personnalisé.
+
+* Pour construire une image
+  - $ docker image build -t [image_name]:[tag] . <br>
+  ** Vous pouvez vous trouver dans le repertoire contenant le fichier Dockerfile pour exécuter la commande.<br>
+  L'option -t indique que l'image va être taguée <br>
+  Attention à ne pas oublier le point à la fin de la commande. <br>
+  
