@@ -162,3 +162,33 @@
   - $ docker container run -d --name [container_name] -p 8080:80 -v [PATH_repertoire_courant]:[repertoire] [image_tool]:[tag]
   - $ docker container run --name my_apache3 -p 8050:80 -v "C:\Users\josue\Documents\GitHub\udemy-docker\Dockerfile\Exemple 2":/usr/local/apache2/htdocs/ httpd:2.4 <br>
   ** Less données se trouvant dans ce repertoire change au moindre changement du côté serveur.
+ 
+ * Quelle commande permet de construire une image Docker ayant pour nom webportal et pour tag 1.0 à partir du Dockerfile disponible dans le répertoire courant ?
+  - $ docker build -t webportail:1.0 .
+ 
+ * Quelle commande peut être utilisée pour voir le point de montage d'un volume nommé nginx-vol ?
+  - docker volume inspect nginx-vol
+
+* Pour investiguer un problème, vous avez besoin de lancer un shell interactif (bash) dans un container en cours d'exécution nommé mycontainer. Votre but est de pouvoir exécuter des commandes depuis l'intérieur du container. Quelle commande utiliseriez-vous pour lancer ce shell ?
+  - $ docker exec -it mycontainer /bin/bash
+ 
+* Quel est le rôle de l'instruction EXPOSE dans un Dockerfile ?
+  - Elle indique au démon Docker qu'il devra router l'ensemble du trafic du container vers l'hôte par l'utilisation de NAT
+
+* Vous avez besoin de l'image nginx avec tag latest dans votre docker storage local. Vous décidez de récupérer cette image depuis un dépôt public. Quelle commande utiliseriez-vous ?
+  - $ docker pull nginx:latest
+
+* Une application appelée "dashboard" basée sur l'image nginx:latest a besoin du répertoire /var/www/html/ de la machine hôte monté dans le container en tant que volume nommé "web_dir". Quelle commande utiliseriez-vous ?
+- $ docker run --name dashboard -v web_dir:/var/www/html nginx:latest
+
+* Quelle commande utiliser pour supprimer toutes les images non-utilisées de votre hôte docker et ainsi récupérer l'espace disque correspondant ?
+  - $ docker image prune
+ 
+* Quelle instruction du Dockerfile pouvez-vous utiliser pour affecter une variable d'environnement dans le container s'exécutant à partir de l'image correspondante ?
+  - $ ENV
+
+* Quelle commande vous permet de retourner uniquement ipaddress du container mycontainer ?
+  - $ docker inspect -f '{{.NetworkSettings.IPAddress}}' mycontainer
+ 
+* Vous avez besoin que le démon docker supprime automatiquement le système de fichiers quand le container se termine. Quelle option de la ligne de commande devez-vous passer à la création du container ?
+  - "--rm"
