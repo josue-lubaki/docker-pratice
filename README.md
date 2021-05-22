@@ -126,3 +126,30 @@
   L'option -t indique que l'image va être taguée <br>
   Attention à ne pas oublier le point à la fin de la commande. <br>
   
+* La durée de vie d'un conteneur
+  - Les conteneurs sont conçus pour être la plupart du temps immuable et éphémère (non changeant, et temporaire)<br>
+  - L'infrastucture immuable : on ne fait que déployer les conteneurs, ceux-ci ne changent jamais. Si des modifications sont nécessaires, on redéploye de nouveaux conteneurs basés sur des images différentes.<br>
+  - Bénéfices : fiabilité et consistance, tout en permettant la reproduction de tous les changements.<br>
+  - On parle de persistance des données lorsqu'on peut conserver celles-ci même si le conteneur a été supprimé ou recréé. très utilie surtout dans les conteneurs avec l'utilisation de bases de données.
+  - On peut utiliser les volumes lorsqu'on veut partager les données entre plusieurs conteneurs qui sont en cours d'exécution ou stocker les données du conteneur sur un hôte distant ou sur le cloud. Et Lorsqu'on souhaite restaurer, sauvergarder ou migrer les données depuis un hôte Docker vers un autre hôte.
+  - On utilisera les bind mounts lorsque le fichier des configuations de l'hôte ou du serveur sont à partager.
+
+* Lister les volumes actuels dans la machine
+  - $ docker volume ls
+  - 
+* Information du volume
+  - $ docker volume inspect [volume_name/volume_id]
+  - 
+* Démarrer un container dans un volume docker en lui précisant le nom
+  - $ docker container run -d --name [container_name] -e MYSQL_ALLOW_EMPTY_PASSWORD-True -v [volume_name]:[repertoire] [image_tool]:[tag]
+  - $ docker container run -d --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD-True -v mysql-db:/var/lib/mysql mysql:latest <br>
+  ** L'option "-v" permet de spécifier le volume à crées. On commence par le nom du volume ici mysql-db, puis après les ":", on spécifie le chemin du volume à l'intérieur du conteneur, ici "/var/lib/mysql"
+
+* Créer un volume
+  - $ docker volume create
+  
+* Supprimer tous les volumes qui sont rélier à aucun conteneur
+  - $ docker volume prune
+ 
+* Pour ouvrir la commande bash sur un conteneur
+  - $ docker exec -it [container_name] bash
