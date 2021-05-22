@@ -1,0 +1,12 @@
+version: '3'
+
+# Fichier identique à la commande:
+# docker container run -p 80:80 -v $(pwd):/usr/share/nginx/html --name mon_nginx nginx:latest
+
+services:
+  mon_nginx:
+    image: nginx
+    volumes:
+      - $(pwd):/usr/share/nginx/html
+    ports:
+      - '80:80'

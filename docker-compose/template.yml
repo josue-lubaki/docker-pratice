@@ -1,0 +1,28 @@
+# Si aucune version n'est spécifiée, alors Docker utilise la 
+# version 1 par défaut (qui ne possède pas toutes les fonctionnalités)
+version: '3' 
+
+# Liste des conteneurs à lancer (équivalent de la commande docker run)
+services:
+  #Nom du premier service
+  nom_du_premier_service:
+    #(option) image à utiliser pour le conteneur du premier service
+    image:
+    #(option) remplace la commande CMD spécifiée dans le Dockerfile
+    command:
+    #(option) variables d'environnement à paramétrer (equivalent option -e)
+    environment:
+    #(option) volumes à paramétrer (équivalent option -v)
+    volumes:
+    #(option) ports à exposer (équivalent option -p)
+    ports:
+
+  nom_du_deuxieme_service:
+    #(option) spécifie d'utiliser le fichier Dockerfile pour builder l'image
+    build: .
+
+#(optionnel) Liste des volumes à créer (équivalent de la commande docker volume create)
+volumes:
+
+#(optionnel) Liste des réseaux à créer (équivalent de la commande docker network create)
+networks:
