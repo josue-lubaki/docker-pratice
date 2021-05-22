@@ -1,18 +1,11 @@
 # docker-pratices
 
-<style>
-  span{
-    color : #FFF;
-    background-color: yellow;
-  }
-</style>
-
 * Quelle est la difference entre "image" et "conteneur" ?
   - Une image est constituée des fichiers binaires, des librairies et du code source qui compose l'application.
   - Un container correspond à l'instance, en cours d'exécution, de l'image.
 
 * Télécharger un Tools sur DockerHub
-  - <span>$ docker container run --publish 80:80 nginx <br></span>
+  - <span>$ docker container run --publish 80:80 nginx </span><br>
   ** Démarrer un nouveau conteneur utilisant l'image nginx téléchargée sur DockerHub, et la partie "publish 80:80" expose le port local 80 de la machine hôte, et redige tout le trafic à l'application exécutée dans le conteneur sur son port 80.
 
 * Lister les conteneurs en exécutions
@@ -200,4 +193,4 @@
 * Vous avez besoin que le démon docker supprime automatiquement le système de fichiers quand le container se termine. Quelle option de la ligne de commande devez-vous passer à la création du container ?
   - "--rm"
 
-Fait par Josue Lubaki, le 22 mai 2021
+Fait par Josue Lubaki
