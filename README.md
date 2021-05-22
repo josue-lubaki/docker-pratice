@@ -136,10 +136,10 @@
 
 * Lister les volumes actuels dans la machine
   - $ docker volume ls
-  - 
+  
 * Information du volume
   - $ docker volume inspect [volume_name/volume_id]
-  - 
+  
 * Démarrer un container dans un volume docker en lui précisant le nom
   - $ docker container run -d --name [container_name] -e MYSQL_ALLOW_EMPTY_PASSWORD-True -v [volume_name]:[repertoire] [image_tool]:[tag]
   - $ docker container run -d --name mysql -e MYSQL_ALLOW_EMPTY_PASSWORD-True -v mysql-db:/var/lib/mysql mysql:latest <br>
@@ -153,3 +153,12 @@
  
 * Pour ouvrir la commande bash sur un conteneur
   - $ docker exec -it [container_name] bash
+
+* Volumes
+  - $ docker container run -d --name [container_name] -p 8080:80 -v [volume_name]:[repertoire] [image_tool]:[tag] <br>
+  ** L'avantage est que même en supprimant le présent container et en créant un nouveau container, tant qu'on utilise le même volume, on garde toutes les données antérieures (monter des versions par exemple)
+
+* Bind Mounting
+  - $ docker container run -d --name [container_name] -p 8080:80 -v [PATH_repertoire_courant]:[repertoire] [image_tool]:[tag]
+  - $ docker container run --name my_apache3 -p 8050:80 -v "C:\Users\josue\Documents\GitHub\udemy-docker\Dockerfile\Exemple 2":/usr/local/apache2/htdocs/ httpd:2.4 <br>
+  ** Less données se trouvant dans ce repertoire change au moindre changement du côté serveur.
